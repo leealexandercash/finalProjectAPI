@@ -1,6 +1,6 @@
 class PlacesController < ApplicationController
   before_action :set_place, only: [:show, :update, :destroy]
-  skip_before_action :authenticate_user!, except: [:new, :create, :update, :destroy]
+  skip_before_action :authenticate_user!
 
   # GET /places
   def index

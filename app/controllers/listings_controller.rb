@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :update, :destroy]
-  skip_before_action :authenticate_user!, except: [:new, :create, :update, :destroy]
+  skip_before_action :authenticate_user!
 
   # GET /listings
   def index
