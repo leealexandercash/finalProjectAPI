@@ -11,7 +11,7 @@ class Uploader
   def self.upload(params)
     if params[:base64].try(:match, %r{^data:(.*?);(.*?),(.*)$})
       image_data = split_base64(params[:base64])
-      image_data_string = image_data[:base64]
+      image_data_string = image_data[:data]
       image_data_binary = Base64.decode64(image_data_string)
 
       temp_img_file = Tempfile.new("")
