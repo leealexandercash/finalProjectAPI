@@ -17,6 +17,7 @@ class ListingsController < ApplicationController
   # POST /listings
   def create
     @listing = Listing.new(Uploader.upload(listing_params))
+    @listing.user = current_user
 
     if @listing.save
       render json: @listing, status: :created, location: @listing

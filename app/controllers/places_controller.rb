@@ -16,12 +16,20 @@ class PlacesController < ApplicationController
 
   # POST /places
   def create
-    @place = Place.new(place_params)
 
-    if @place.save
-      render json: @place, status: :created, location: @place
+    @place = Place.where(google_place_id: params[:google_place_id]).first
+
+    if @place
+      return render json: @place, status: :created, location: @place
     else
-      render json: @place.errors, status: :unprocessable_entity
+
+      @place = Place.new(place_params)
+
+      if @place.save
+        render json: @place, status: :created, location: @place
+      else
+        render json: @place.errors, status: :unprocessable_entity
+      end
     end
   end
 
